@@ -1,0 +1,248 @@
+<?php
+session_start();
+
+/*if (!isset($_SESSION['user_id'])) {
+    die("User not logged in.");
+}*/
+
+require '../../authenticate/db.php';
+
+$user_id = $_SESSION['user_id'];
+
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+        // Redirect to login page
+    header("Location: ../../authenticate/login.html");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+
+// Fetch full user record
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+
+// Check if user is banned
+if ($user && $user['status'] === 'banned') {
+    header("Location: ../bannedpage/banned.php");
+    exit();
+}
+?>
+
+<?php /*if (isset($_SESSION['impersonating']) && $_SESSION['impersonating'] === true): ?>
+  <a href="../../backends/stop_impersonation.php" class="impersonation-banner">Back to Admin</a>
+<?php endif; */?>
+
+<!--NOTIFICATION MESSAGE-->
+
+<?php
+$unread = $conn->prepare("SELECT COUNT(*) AS unread FROM notifications WHERE user_id=? AND is_read=0");
+$unread->bind_param("i", $user_id);
+$unread->execute();
+$count_result = $unread->get_result()->fetch_assoc();
+$unread_count = $count_result['unread'];
+?>         
+ <?php if ($unread_count > 0): ?>
+ <?php endif; ?>
+
+<!----END-->
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>XcorPs | Final Signal Purcase Plan</title>
+        <!-- FAVIVON -->
+        <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+	      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        
+        <!--START CANDLE STICK SCRIPT-->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial"></script>
+  <!--END CANDLE STICK SCRIPT-->
+  
+
+        <link rel="stylesheet" href="css/inner-style.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+     background: url('../../imgg/GIF(1).gif') no-repeat center center/cover;
+      font-family: 'Inter', sans-serif;
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+}
+.hood{
+    animation: zoomPulse 2s ease-in-out infinite;
+}
+
+@keyframes zoomPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+    .icon {
+      width: 100px;
+      height: 80px;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight:800;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+	    @media (max-width:500px){
+    h1 {
+      font-size: 18px;
+    }
+	    }
+
+    p {
+      font-size: 14px;
+      font-weight:800;
+      color: red;
+      max-width: 300px;
+      margin-bottom: 40px;
+    }
+	  @media (max-width:500px){
+    p {
+      font-size: 13px;	    
+    }
+	  }
+
+    .button {
+      padding: 14px 28px;
+      background:green;
+  border:1px solid greenyellow;
+      border-radius: 12px;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .button:hover {
+      opacity: 0.9;
+    }
+    
+    
+    .blur-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      backdrop-filter: blur(5px);
+      background-color: #020203b5; /* soft white overlay */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      display:non;
+    }
+
+    .blur-overlay img {
+      max-width: 300px; /* adjust GIF size */
+      
+    }
+    
+  </style>
+</head>
+<body>
+    <div class="blur-overlay" id="processing">
+    <img src="../../imgg/processing.gif" alt="Loading or Centered GIF">
+  </div>
+    
+  <!-- Replace the src below with your actual image -->
+  <img src="../../imgg/preview.png" alt="Wallet Icon" class="icon" />
+
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+  {
+  "symbols": [
+    {
+      "proName": "FOREXCOM:SPXUSD",
+      "title": "S&P 500 Index"
+    },
+    {
+      "proName": "FOREXCOM:NSXUSD",
+      "title": "US 100 Cash CFD"
+    },
+    {
+      "proName": "FX_IDC:EURUSD",
+      "title": "EUR to USD"
+    },
+    {
+      "proName": "BITSTAMP:BTCUSD",
+      "title": "Bitcoin"
+    },
+    {
+      "proName": "BITSTAMP:ETHUSD",
+      "title": "Ethereum"
+    }
+  ],
+  "showSymbolLogo": true,
+  "isTransparent": true,
+  "displayMode": "adaptive",
+  "colorTheme": "dark",
+  "locale": "en"
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+
+<div class="hood">
+  <h1>SIGNAL PURCHASE QUEUED</h1>
+  <p>Your <b>AUTOMATED TRADEBOT</b> would commence trading the moment we have verified your payment to purchase signal</p>
+
+  <a href="../tradestation/trade_station.php" class="button">Watch your Trade</a>
+</div>
+<script>
+      setTimeout(() => {
+        document.getElementById("processing").style.display = "none";
+      }, 3000); // 3 seconds = 3000 milliseconds
+      
+    
+    
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+RewriteEngine On
+
+# Match URLs like /refWB-9F8Z-X4d7/28 and route to referral_redirect.php
+RewriteRule ^ref([A-Za-z0-9\-]+)/([0-9]+)$ referral.php [L]

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alpha Bot Overview</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0d1117;
+      color: #f0f6fc;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .bot-container {
+      background-color: #161b22;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(10, 200, 255, 0.1);
+      max-width: 400px;
+      width: 100%;
+      padding: 25px;
+      transition: transform 0.3s ease;
+    }
+
+    .bot-container:hover {
+      transform: translateY(-5px);
+    }
+
+    .bot-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #58a6ff;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .bot-price {
+      font-size: 1.4rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #0af;
+    }
+
+    .bot-description {
+      font-size: 1rem;
+      line-height: 1.6;
+      text-align: center;
+      margin-bottom: 25px;
+      color: #c9d1d9;
+    }
+
+    .features {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 25px;
+    }
+
+    .features li {
+      padding: 10px 0;
+      border-bottom: 1px solid #30363d;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      color: #b1bac4;
+    }
+
+    .features li span {
+      color: #0af;
+      font-weight: 600;
+    }
+
+    .subscribe-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #0af, #0074f8);
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .subscribe-btn:hover {
+      background: linear-gradient(135deg, #0074f8, #0af);
+    }
+
+    @media (max-width: 500px) {
+      .bot-container {
+        padding: 20px 15px;
+        border-radius: 15px;
+      }
+
+      .bot-title {
+        font-size: 1.5rem;
+      }
+
+      .bot-description {
+        font-size: 0.95rem;
+      }
+
+      .features li {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bot-container">
+    <div class="bot-title">Alpha Bot</div>
+    <div class="bot-price">$158</div>
+
+    <div class="bot-description">
+      Alpha Bot is your intelligent trading companion, designed to deliver smart, real-time decisions. It includes a premium bot subscription and an exclusive 25-minute signal plan tailored for rapid market moves.
+    </div>
+
+    <ul class="features">
+      <li>Subscription Type: <span>One-Time Access</span></li>
+      <li>Signal Duration: <span>25 Minutes</span></li>
+      <li>Automation: <span>Fully Automated</span></li>
+      <li>Market Coverage: <span>Crypto, Forex, Commodities</span></li>
+      <li>Risk Mode: <span>Smart Adaptive AI</span></li>
+    </ul>
+
+    <button onclick="window.location.href='alphabot_payment.php'" class="subscribe-btn">Subscribe to Alpha Bot</button>
+  </div>
+
+</body>
+</html>

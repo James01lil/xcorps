@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0d0d0d;
+      color: #ffffff;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .login-container {
+      background-color: #000000;
+      border-radius: 14px;
+      padding: 30px 25px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 20px #2c2c3e;
+    }
+
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 24px;
+      color: peru;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: #cccccc;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px 12px;
+      border: none;
+      border-radius: 8px;
+      background-color: #2a2a2a;
+      color: #fff;
+      font-size: 16px;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      box-shadow: 0 0 4px #913618;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background-color: #913618;
+      color: #000;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .login-btn:hover {
+      background-color: orangered;
+    }
+
+    .error-msg {
+      margin-top: 10px;
+      text-align: center;
+      color: red;
+      font-size: 14px;
+    }
+
+    /* Small screen and mobile responsiveness */
+    @media (max-width: 500px) {
+      .login-container {
+        padding: 25px 20px;
+      }
+
+      .login-container h2 {
+        font-size: 20px;
+      }
+
+      .form-group input {
+        font-size: 15px;
+      }
+
+      .login-btn {
+        padding: 10px;
+        font-size: 15px;
+      }
+    }
+    
+    /* Hide warning by default */
+#desktopWarning {
+  display: none;
+}
+
+/* Show warning and hide content on screens wider than 500px */
+@media (min-width: 501px) {
+  #desktopWarning {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #111;
+    color: white;
+    font-size: 1.2rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    z-index: 9999;
+  }
+
+  #mainContent {
+    display: none;
+  }
+}
+  </style>
+</head>
+<body>
+    
+    <div id="desktopWarning">
+  ⚠️ This website is only accessible on mobile or small screens.<br>
+  Please resize your browser or use a mobile device.
+</div>
+
+<div id="mainContent">
+  <!-- Your actual website content goes here -->
+</div>
+
+  <form action="admin_login.php" method="POST" class="login-container">
+    <h2>Admin Login</h2>
+
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" placeholder="Enter admin username" required>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter admin password" required>
+    </div>
+
+    <button type="submit" class="login-btn">Login</button>
+
+    <?php if (isset($_GET['error'])): ?>
+      <div class="error-msg"><?= htmlspecialchars($_GET['error']) ?></div>
+    <?php endif; ?>
+  </form>
+  
+  
+
+</body>
+</html>

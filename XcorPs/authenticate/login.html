@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>XcorPs | Login Page</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+
+    * {
+
+      margin: 0;
+
+      padding: 0;
+
+      box-sizing: border-box;
+
+    }
+
+    body, html {
+
+      height: 100%;
+
+      font-family: 'Inter', sans-serif;
+
+      overflow: hidden;
+
+    }
+
+    /* Background Video */
+
+    .video-bg {
+
+      position: fixed;
+
+      top: 0;
+
+      left: 0;
+
+      min-width: 100%;
+
+      min-height: 100%;
+
+      z-index: -2;
+
+      object-fit: cover;
+
+    }
+
+    /* Dark Overlay */
+
+    .overlay {
+
+      position: fixed;
+
+      inset: 0;
+
+      background: rgba(0, 0, 0, 0.65);
+
+      z-index: -1;
+
+    }
+
+    .login-container {
+
+      height: 100%;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+    }
+
+    .login-box {   
+
+      padding: 40px;
+
+      border-radius: 12px;
+
+      max-width: 400px;
+
+      width: 100%;
+
+      color: #fff;
+
+  box-shadow:
+
+    0 -4px 4px -4px black,  /* Top */
+
+    4px 0 4px -4px black,   /* Right */
+
+    0 4px 4px -4px black,   /* Bottom */
+
+   -4px 0 4px -4px black;   /* Left */
+
+    }
+
+    .login-box h2 {
+
+      text-align: center;
+
+      margin-bottom: 24px;
+
+      font-size: 24px;
+
+    }
+
+    .form-group {
+
+      margin-bottom: 20px;
+
+    }
+
+    .form-group label {
+
+      font-size: 14px;
+
+      color: #ccc;
+
+      margin-bottom: 6px;
+
+      display: block;
+
+    }
+
+    .form-group input {
+
+      width: 100%;
+
+      padding: 12px;
+
+      background: #2c2c3e;
+
+      border: none;
+
+      border-radius: 8px;
+
+      color: white;
+
+    }
+
+    .form-options {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      font-size: 14px;
+
+      margin-bottom: 20px;
+
+      color: #ccc;
+
+    }
+
+    .form-options a {
+
+      color: #66b2ff;
+
+      text-decoration: none;
+
+    }
+
+    .login-btn {
+
+      width: 100%;
+
+      padding: 12px;
+
+      background: #913618;
+
+      color: white;
+
+      font-weight: bold;
+
+      border: none;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      transition: background 0.3s;
+
+    }
+
+    .login-btn:hover {
+
+      background: #913618;
+
+    }
+
+    .signup-link {
+
+      margin-top: 20px;
+
+      text-align: center;
+
+      font-size: 14px;
+
+      color: #ccc;
+
+    }
+
+    .signup-link a {
+
+      color: #66b2ff;
+
+      text-decoration: none;
+
+    }
+
+    @media (max-width: 480px) {
+
+      .login-box {
+
+        padding: 30px 20px;
+
+        margin: 20px;
+
+      }
+
+    }
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+     .nav-link {
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-link:hover {
+      background:#913618;
+      transform: scale(1.05);
+    }
+
+    
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- Background Video -->
+
+  <video autoplay muted loop class="video-bg">
+
+    <source src="../imgg/large-thumbnail20240812-825521-12pzezi.mp4" type="video/mp4">
+
+    Your browser does not support the video tag.
+
+  </video>
+
+  
+
+  
+
+  <div class="overlay"></div>
+
+  
+
+  
+
+  
+
+  <!-- Top Navigation with Green Gradient -->
+
+<nav style="display: flex; justify-content: flex-end; gap: 12px; background: rgba(0,0,0,0.6); padding: 16px 24px; position: relative; z-index: 1;">
+
+  <a href="../index.html" class="nav-link">HOME</a>
+
+  <a href="login.html" class="nav-link">LOGIN</a>
+
+  <a href="register.html" class="nav-link">REGISTER</a>
+
+</nav>
+
+<!-- Left Welcome Message -->
+
+<div style="position: absolute; top: 100px; left: 30px; z-index: 1; color: white; max-width: 300px;">
+
+  <h1 style="font-size: 18px; font-weight: 800; color: #913618; margin-bottom: 8px;">WELCOME BACK</h1>
+
+  <p style="font-size: 14px; font-weight: 600; line-height: 1.5; color: #eee;">
+
+    LOGIN BACK TO YOUR ACCOUNT TO START EARNING PROFITS &amp; COMMODITIES NOW!
+
+  </p>
+
+</div>
+
+  <!-- Login Form -->
+
+  <div class="login-container">
+
+    <div class="login-box">
+
+      <h2>Broker Login</h2>
+
+      <form action="login_process.php" method="POST">
+
+        <div class="form-group">
+
+          <label for="email">Email Address</label>
+
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="password">Password</label>
+
+          <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+        </div>
+
+        <div class="form-options">
+
+          <label><input type="checkbox" name="remember"> Remember me</label>
+
+          <a href="#">Forgot Password?</a>
+
+        </div>
+        
+        <form method="POST" action="login_process.php">
+  <!-- your registration inputs -->
+
+  <!-- Add this reCAPTCHA box -->
+  <div class="g-recaptcha" data-sitekey="6LeXPpErAAAAALHNxw_VvailkEbLf_uZWeFhMGSq"></div>
+  
+  <br>
+  <button type="submit" class="login-btn">login</button>
+</form>
+
+<!-- Include the reCAPTCHA script -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+        <div class="signup-link">
+
+          Don’t have an account? <a href="register.html">Sign Up</a>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>
