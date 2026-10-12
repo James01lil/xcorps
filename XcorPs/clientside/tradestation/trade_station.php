@@ -1365,7 +1365,7 @@ padding: 10px 10px;
           <br><br>
   <m onclick="validateCoupon()" style="  cursor:pointer;background:#80e171;color:#000;padding:10px 50px;text-align:center;font-weight:800;border-radius:10px;  " >Activate</m>
           <br><br>
-               <p style="color:#000;">For assistance, contact <a href="" style="">support@yourcompany.com.</a></p>
+               <p style="color:#000;">For assistance, contact <a href="" style="">supportus@xcorps.online.</a></p>
   </div>
           
     
@@ -1424,7 +1424,7 @@ $user = $result->fetch_assoc();
   <div class="toggle-switch <?php echo ($user['toggle_enabled'] ? 'active' : '') . (!$user['toggle_enabled'] ? ' disabled' : ''); ?>" onclick="toggleBot()" id="botToggle">
     <div class="slider"></div>
   </div>
-  <p id="toggleStatus"><?php echo $user['toggle_enabled'] ? 'Bot is ready to toggle.' : 'Toggle not yet approved.'; ?></p>
+  <p id="toggleStatus"><?php echo $user['toggle_enabled'] ? 'Bot is ready to Trade.' : 'Bot not yet Active.'; ?></p>
 
 
   <script>
@@ -1433,7 +1433,7 @@ $user = $result->fetch_assoc();
 
     // If the toggle is disabled by admin
     if (toggle.classList.contains("disabled")) {
-      alert("Your toggle hasn't been approved by the admin yet.");
+      alert("Trade Bot Not Yet Active,  Try again in a short while, or Contact Support.");
       return;
     }
 
