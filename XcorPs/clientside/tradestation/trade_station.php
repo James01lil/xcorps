@@ -1767,7 +1767,7 @@ $user = $result->fetch_assoc();
 
  
         
-        <script src="../NEWS/cachedNEWS/gnews.js"></script>
+        <script src="../NEWS/news.js"></script>
           
   
 
