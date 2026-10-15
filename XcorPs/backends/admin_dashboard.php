@@ -1,4 +1,4 @@
-<?php
+8<?php
 session_start();
 if (!isset($_SESSION['is_admin'])) {
     header("Location: admin_login.html");
@@ -360,7 +360,7 @@ table {
     <div class="card">
       <h2>Wallet Address</h2>
       <form action="update_code.php" method="post">
-        <input type="text" name="code" value="<?= $code ?>" maxlength="20" required>
+        <input type="text" name="code" value="<?= $code ?>" maxlength="60" required>
         <button type="submit">Update Address</button>
       </form>
     </div>
